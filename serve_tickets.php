@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 if($bt === "Suivant"){
     $result1 = mysqli_query($db->connect(),"SELECT * FROM tickets where served=0 and in_progress=0 order by num Asc LIMIT 1");
     $row = mysqli_fetch_array($result1);
-    $result = mysqli_query($db->connect(),'UPDATE  tickets SET in_progress=1 where num ='.$row["num"]);
+    $result = mysqli_query($db->connect(),'UPDATE  tickets SET in_progress=1, in_progress_time=now() where num ='.$row["num"]);
 
     if ($result1->num_rows !== 0){
         $num = $row["num"];
@@ -31,7 +31,7 @@ if($bt === "Suivant"){
 if($bt === "Servir"){
     $last = $_POST["last"];  
     $num = $last;  
-    $result = mysqli_query($db->connect(),'UPDATE  tickets SET served=1 where num ='.$last);
+    $result = mysqli_query($db->connect(),'UPDATE  tickets SET served=1, served_time=now() where num ='.$last);
 }
 
 echo '<html>
