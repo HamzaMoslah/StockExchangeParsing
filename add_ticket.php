@@ -15,9 +15,10 @@ $db = new DB_CONNECT();
 
 // mysql inserting a new row
 $service = $_POST["service"];
+$poste = $_POST["poste"];
 
-$result = mysqli_query($db->connect(),"INSERT INTO tickets(temps,served,in_progress,service) 
-VALUES (now(),0,0,'$service')");
+$result = mysqli_query($db->connect(),"INSERT INTO tickets(temps,served,in_progress,service,poste) 
+VALUES (now(),0,0,'$service','$poste')");
 
 // check if row inserted or not
 if ($result) {
